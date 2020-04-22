@@ -4,6 +4,7 @@ const Container = styled.div`
   ${({ theme }) => css`
     align-items: center;
     background-color: ${theme.colors.white};
+    border: solid 3px ${theme.colors.green};
     cursor: pointer;
     display: flex;
     flex-basis: 0; /* sets the main size for all blocks */
@@ -11,6 +12,7 @@ const Container = styled.div`
     flex-shrink: 0; /* allows shrink down to main size (flex-basis) if the row/grid is thinner than all blocks put together */
     font-size: 40px;
     justify-content: center;
+    margin: 15px;
     user-select: none;
 
     &:before {

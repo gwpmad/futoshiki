@@ -4,6 +4,7 @@ const Container = styled.div`
   ${() => css`
     display: flex;
     flex-flow: row;
+    justify-content: space-around;
   `}
 `;
 
