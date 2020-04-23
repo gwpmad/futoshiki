@@ -1,55 +1,7 @@
 import styled, { css } from 'styled-components';
 
 const Container = styled.div`
-  ${({ theme, greaterThan }) => {
-    let chevronAlignment = '';
-
-    switch (greaterThan) {
-      case 'right':
-        chevronAlignment = css`
-          &:after {
-            content: '❯';
-            font-size: smaller;
-            position: absolute;
-            right: 114%;
-          }
-        `;
-        break;
-      case 'left':
-        chevronAlignment = css`
-          &:after {
-            content: '❮';
-            font-size: smaller;
-            position: absolute;
-            left: 114%;
-          }
-        `;
-        break;
-      case 'above':
-        chevronAlignment = css`
-          &:after {
-            content: '❮';
-            font-size: smaller;
-            transform: rotate(90deg);
-            position: absolute;
-            bottom: 98%;
-          }
-        `;
-        break;
-      case 'below':
-        chevronAlignment = css`
-          &:after {
-            content: '❯';
-            font-size: smaller;
-            transform: rotate(90deg);
-            position: absolute;
-            top: 98%;
-          }
-        `;
-        break;
-      default:
-    }
-
+  ${({ theme }) => {
     return css`
       align-items: center;
       background-color: ${theme.colors.white};
@@ -71,7 +23,36 @@ const Container = styled.div`
         float: left;
       }
 
-      ${chevronAlignment}
+      .chevron--right {
+        cursor: auto;
+        font-size: smaller;
+        position: absolute;
+        left: 114%;
+      }
+
+      .chevron--left {
+        cursor: auto;
+        font-size: smaller;
+        position: absolute;
+        right: 114%;
+        transform: rotate(180deg);
+      }
+
+      .chevron--above {
+        cursor: auto;
+        font-size: smaller;
+        transform: rotate(90deg);
+        position: absolute;
+        bottom: 98%;
+      }
+
+      .chevron--below {
+        cursor: auto;
+        font-size: smaller;
+        transform: rotate(90deg);
+        position: absolute;
+        top: 98%;
+      }
     `;
   }}
 `;
