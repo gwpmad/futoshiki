@@ -1,3 +1,9 @@
+# Futoshiki
+
+Building a [Futoshiki](https://en.wikipedia.org/wiki/Futoshiki) game using modern React/Redux/Styled Components techniques.
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
