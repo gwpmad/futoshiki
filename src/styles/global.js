@@ -14,8 +14,8 @@ export default createGlobalStyle`
         #root {
           height: 100%;
           background: radial-gradient(
-            ${theme.colors.white},
-            ${theme.colors.lightBlue}
+            ${theme.colors.lightBlue},
+            ${theme.colors.blue}
           );
           display: flex;
           justify-content: center;

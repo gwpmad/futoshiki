@@ -1,7 +1,9 @@
 export default {
   colors: {
     white: '#ffffff',
-    lightBlue: '#8aaae5',
-    green: '#2bae66ff'
+    blue: '#8aaae5',
+    green: '#2bae66ff',
+    lightBlue: '#8ddde5',
+    pink: '#ffa5ac'
   }
 };
