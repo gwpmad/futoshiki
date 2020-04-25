@@ -1,5 +1,9 @@
 import { MAX_CLUES, MIN_CLUES } from 'constant-values';
 
+/**
+ * Decides upon the grid coordinates where grid values and inequalities should be shown in the final puzzle
+ * @param {array} grid A full 5*5 Futoshiki grid
+ */
 function getClueCoordinates(grid) {
   const { greaterThansQuota, valuesQuota } = getQuotas();
 

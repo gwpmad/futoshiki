@@ -27,17 +27,17 @@ function getUnshuffledGrid() {
 
 /**
  * Switches the axes of the array of the array, allowing for the opposite axis to be shuffled later while keeping the sets together
- * @param {*} array in this case an array of arrays
+ * @param array An array of arrays
  */
 function switchAxes(array) {
   return array.map((_, idx) => {
-    return array.map(thing => thing[idx]);
+    return array.map(subArray => subArray[idx]);
   });
 }
 
 /**
  * Returns a shuffled version of an array using the modern version of the Fisher-Yates algorithm
- * @param {*} array in this case a 2D array - the function shuffles it on one axis,
+ * @param array An array of arrays - the function shuffles it on one axis
  */
 function shuffleOneAxis(array) {
   const shuffledArray = array.slice();
