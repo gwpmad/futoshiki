@@ -23,34 +23,28 @@ const Container = styled.div`
         float: left;
       }
 
-      .chevron--right {
+      .chevron {
         cursor: auto;
         font-size: smaller;
         position: absolute;
+      }
+
+      .chevron--right {
         left: 114%;
       }
 
       .chevron--left {
-        cursor: auto;
-        font-size: smaller;
-        position: absolute;
         right: 114%;
         transform: rotate(180deg);
       }
 
       .chevron--above {
-        cursor: auto;
-        font-size: smaller;
         transform: rotate(90deg);
-        position: absolute;
         bottom: 98%;
       }
 
       .chevron--below {
-        cursor: auto;
-        font-size: smaller;
         transform: rotate(90deg);
-        position: absolute;
         top: 98%;
       }
     `;

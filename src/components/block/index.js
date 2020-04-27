@@ -12,7 +12,7 @@ const Block = () => {
       5
       {Children.toArray(
         greaterThan.map(direction => (
-          <div className={`chevron--${direction}`}>❯</div>
+          <div className={`chevron chevron--${direction}`}>❯</div>
         ))
       )}
     </Container>

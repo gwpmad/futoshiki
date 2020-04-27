@@ -1,4 +1,5 @@
 import { SIDE_LENGTH } from 'constant-values';
+import { shuffleArray as shuffleOneAxis } from '../helpers';
 
 /**
  * Returns a 5*5 grid with the numbers 1 to 5 randomly distributed in each row and column
@@ -33,22 +34,6 @@ function switchAxes(array) {
   return array.map((_, idx) => {
     return array.map(subArray => subArray[idx]);
   });
-}
-
-/**
- * Returns a shuffled version of an array using the modern version of the Fisher-Yates algorithm
- * @param array An array of arrays - the function shuffles it on one axis
- */
-function shuffleOneAxis(array) {
-  const shuffledArray = array.slice();
-  for (let i = shuffledArray.length - 1; i > 0; i--) {
-    let shuffleIdx = Math.floor(Math.random() * (i + 1));
-    [shuffledArray[i], shuffledArray[shuffleIdx]] = [
-      shuffledArray[shuffleIdx],
-      shuffledArray[i]
-    ];
-  }
-  return shuffledArray;
 }
 
 export default createFullGrid;
