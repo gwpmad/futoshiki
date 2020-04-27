@@ -83,7 +83,7 @@ describe('getGreaterThanCoordinates', () => {
     });
   });
 
-  it.only('should not include a particular set of coordinates more times than the number of lesser values around it on the grid', () => {
+  it('should not include a particular set of coordinates more times than the number of lesser values around it on the grid', () => {
     const greaterThanCoordinates = getGreaterThanCoordinates(fullGrid, 10);
     const allCoordinates = getAllCoordinates(greaterThanCoordinates);
     allCoordinates.forEach(coords => {

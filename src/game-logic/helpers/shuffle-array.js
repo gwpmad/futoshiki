@@ -1,6 +1,6 @@
 /**
  * Returns a shuffled version of an array using the modern version of the Fisher-Yates algorithm
- * @param array An array to shuffle (can be an array of arrays)
+ * @param {array} An array to shuffle (can be an array of arrays)
  */
 function shuffleArray(array) {
   const shuffledArray = array.slice();
