@@ -55,9 +55,8 @@ describe('getGreaterThanCoordinates', () => {
   });
 
   it('should return a random number of coordinates (within the accepted bounds)', () => {
-    const totalClues = 10;
     const counts = [...new Array(5)]
-      .map(() => getGreaterThanCoordinates(fullGrid, totalClues))
+      .map(() => getGreaterThanCoordinates(fullGrid, 10))
       .map(result => countTotalCoordinates(result));
     const countsAllEqual = counts.every(count => count === counts[0]);
     expect(countsAllEqual).toBeFalsy();

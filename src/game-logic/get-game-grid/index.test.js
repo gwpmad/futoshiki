@@ -1,4 +1,5 @@
 import getGameGrid from '.';
+import { getValueAtCoordinates } from '../helpers';
 
 const fullGrid = [
   [1, 3, 5, 4, 2],
@@ -9,83 +10,89 @@ const fullGrid = [
 ];
 
 describe('getGameGrid', () => {
-  it('should return a game grid with values at the value coordinates passed in', () => {
-    const valueCoordinates = [getRandomCoordinates(), getRandomCoordinates()];
-    const gameGrid = getGameGrid(fullGrid, {
-      valueCoordinates,
-      greaterThanCoordinates: []
-    });
-    expect(getFromCoordinates(gameGrid, valueCoordinates[0]).value).toEqual(
-      getFromCoordinates(fullGrid, valueCoordinates[0])
-    );
-    expect(getFromCoordinates(gameGrid, valueCoordinates[1]).value).toEqual(
-      getFromCoordinates(fullGrid, valueCoordinates[1])
-    );
+  it('should return a game grid of objects, the same size as the grid passed in', () => {
+    const gameGrid = getGameGrid(fullGrid);
+    expect(gameGrid).toHaveLength(5);
+    expect(gameGrid[0]).toHaveLength(5);
   });
 
-  it('should return a null for value for all squares not included in the value coordinates', () => {
-    const gameGrid = getGameGrid(fullGrid, {
-      valueCoordinates: [],
-      greaterThanCoordinates: []
+  it('should return a game grid of objects, with "value" and "greaterThan" properties', () => {
+    const gameGrid = getGameGrid(fullGrid);
+    gameGrid.flat().forEach(square => {
+      expect(square).toHaveProperty('value');
+      expect(square).toHaveProperty('greaterThan');
     });
-    const valuesAllNull = gameGrid.flat().every(({ value }) => value === null);
-    expect(valuesAllNull).toBeTruthy();
   });
 
-  it('should return an empty array for "greater than" for all squares not included in the "greater than" coordinates', () => {
-    const gameGrid = getGameGrid(fullGrid, {
-      valueCoordinates: [],
-      greaterThanCoordinates: []
-    });
-    const arraysAllEmpty = gameGrid
+  it('should return a total of between 8 and 10 clues ("value" and "greaterThan")', () => {
+    const gameGrid = getGameGrid(fullGrid);
+    console.log('gameGrid', gameGrid);
+    const count = countClues(gameGrid);
+    expect(count).toBeGreaterThanOrEqual(8);
+    expect(count).toBeLessThanOrEqual(10);
+  });
+
+  it('should return a random number of clues, within the stated bounds', () => {
+    const counts = [...new Array(5)]
+      .map(() => getGameGrid(fullGrid, 10))
+      .map(countClues);
+    const countsAllEqual = counts.every(count => count === counts[0]);
+    expect(countsAllEqual).toBeFalsy();
+  });
+
+  it('should have an empty array for all squares without "greater than" clues', () => {
+    const gameGrid = getGameGrid(fullGrid);
+    const allAreArrays = gameGrid
       .flat()
-      .every(p => Array.isArray(p.greaterThan) && p.greaterThan.length === 0);
-    expect(arraysAllEmpty).toBeTruthy();
+      .filter(({ greaterThan }) => !greaterThan.length)
+      .every(({ greaterThan }) => Array.isArray(greaterThan));
+    expect(allAreArrays).toBeTruthy();
   });
 
-  it('should return an array of valid "greater than" directions for each "greater than" coordinate passed in', () => {
-    const gameGrid = getGameGrid(fullGrid, {
-      valueCoordinates: [],
-      greaterThanCoordinates: [
-        [1, 1],
-        [3, 3]
-      ]
+  it('should have a null value for all squares without "value" clues', () => {
+    const gameGrid = getGameGrid(fullGrid);
+    const allAreNulls = gameGrid
+      .flat()
+      .filter(({ value }) => !value)
+      .every(({ value }) => value === null);
+    expect(allAreNulls).toBeTruthy();
+  });
+
+  it('should include the correct grid number where a "value" clue is provided', () => {
+    const gameGrid = getGameGrid(fullGrid);
+    gameGrid.forEach((array, coord1) => {
+      array.forEach(({ value }, coord2) => {
+        if (value) {
+          const realValue = getValueAtCoordinates(fullGrid, [coord1, coord2]);
+          expect(value).toEqual(realValue);
+        }
+      });
     });
-
-    expect(gameGrid[1][1].greaterThan).toHaveLength(1);
-    expect(isDirection(gameGrid[1][1].greaterThan[0])).toBeTruthy();
-    expect(gameGrid[3][3].greaterThan).toHaveLength(1);
-    expect(isDirection(gameGrid[3][3].greaterThan[0])).toBeTruthy();
   });
 
-  it('should include two different directions for coordinates that feature twice in the "greater than" array passed in', () => {
-    const gameGrid = getGameGrid(fullGrid, {
-      valueCoordinates: [],
-      greaterThanCoordinates: [
-        [3, 3],
-        [3, 3]
-      ]
+  it('should include an array of directions when "greater than" is truthy', () => {
+    const gameGrid = getGameGrid(fullGrid);
+    const greaterThans = getGreaterThans(gameGrid);
+    greaterThans.forEach(directions => {
+      directions.forEach(direction => {
+        expect(typeof direction).toEqual('string');
+        expect(isDirection(direction)).toBeTruthy();
+      });
     });
-
-    const { greaterThan } = gameGrid[3][3];
-    expect(greaterThan).toHaveLength(2);
-    expect(greaterThan[0]).not.toEqual(greaterThan[1]);
   });
-
-  // it('should only include ');
 });
 
-function getRandomCoordinates(_min = 0, _max = 4) {
-  const min = Math.ceil(_min);
-  const max = Math.floor(_max);
-  return [
-    Math.floor(Math.random() * (max - min + 1)) + min,
-    Math.floor(Math.random() * (max - min + 1)) + min
-  ];
+function countClues(grid) {
+  return grid.flat().reduce((clues, { value, greaterThan }) => {
+    return clues + greaterThan.length + (value ? 1 : 0);
+  }, 0);
 }
 
-function getFromCoordinates(array, coordinates) {
-  return array[coordinates[0]][coordinates[1]];
+function getGreaterThans(grid) {
+  return grid
+    .flat()
+    .filter(({ greaterThan }) => greaterThan.length)
+    .map(({ greaterThan }) => greaterThan);
 }
 
 function isDirection(value) {
