@@ -26,7 +26,6 @@ describe('getGameGrid', () => {
 
   it('should return a total of between 8 and 10 clues ("value" and "greaterThan")', () => {
     const gameGrid = getGameGrid(fullGrid);
-    console.log('gameGrid', gameGrid);
     const count = countClues(gameGrid);
     expect(count).toBeGreaterThanOrEqual(8);
     expect(count).toBeLessThanOrEqual(10);
