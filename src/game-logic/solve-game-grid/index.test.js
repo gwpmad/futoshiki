@@ -46,8 +46,8 @@ describe('solveGameGrid', () => {
     expect(result.some(grid => arraysMatch(grid, solution2))).toBeTruthy();
   });
 
-  it('should stop searching for solutions after finding 25 (to avoid infinite loops)', () => {
+  it('should stop searching for solutions after finding 15 (to avoid infinite loops)', () => {
     const result = solveGameGrid(gameGridWithManySolutions);
-    expect(result).toHaveLength(25);
+    expect(result).toHaveLength(15);
   });
 });

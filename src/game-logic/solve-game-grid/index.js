@@ -13,13 +13,17 @@ const oppositeDirections = [
   ['below', 'above']
 ];
 
+/**
+ * Returns an array of 2d arrays, each a potential solution to the gameGrid passed in
+ * @param {array} gameGrid a 2d Futoshiki game grid with value and greater than constraints
+ */
 function solveGameGrid(gameGrid) {
   const solutions = [];
   return collectSolutions(gameGrid, solutions);
 }
 
 function collectSolutions(gameGrid, solutions) {
-  if (solutions.length < 25) {
+  if (solutions.length < 15) {
     const solvedGrid = findSolution(gameGrid, solutions);
     if (solvedGrid) {
       solutions.push(solvedGrid);
@@ -75,29 +79,24 @@ function getNextCoordinates([coord1, coord2]) {
 
 function getPotentialValues(grid, coordinates) {
   let potentialValues = getRange(SIDE_LENGTH);
+  function removePotentialValue(potentialValue) {
+    potentialValues = potentialValues.filter(value => value !== potentialValue);
+  }
 
   // check row
   for (let i = 0; i < SIDE_LENGTH; i++) {
     const square = getValueAtCoordinates(grid, [coordinates[0], i]);
-    if (square.value) {
-      potentialValues = potentialValues.filter(value => value !== square.value);
-    }
+    if (square.value) removePotentialValue(square.value);
   }
 
   // check column
   for (let i = 0; i < SIDE_LENGTH; i++) {
     const square = getValueAtCoordinates(grid, [i, coordinates[1]]);
-    if (square.value) {
-      potentialValues = potentialValues.filter(value => value !== square.value);
-    }
+    if (square.value) removePotentialValue(square.value);
   }
 
-  if (squareCannotBeFive(grid, coordinates)) {
-    potentialValues = potentialValues.filter(value => value !== 5);
-  }
-  if (squareCannotBeOne(grid, coordinates)) {
-    potentialValues = potentialValues.filter(value => value !== 1);
-  }
+  if (squareCannotBeFive(grid, coordinates)) removePotentialValue(5);
+  if (squareCannotBeOne(grid, coordinates)) removePotentialValue(1);
 
   return potentialValues;
 }

@@ -1,5 +1,6 @@
 import getGameGrid from '.';
 import { getValueAtCoordinates } from '../helpers';
+import { solveGameGrid } from 'game-logic';
 
 const fullGrid = [
   [1, 3, 5, 4, 2],
@@ -9,38 +10,40 @@ const fullGrid = [
   [5, 2, 4, 3, 1]
 ];
 
+// Use for most of the tests so that they run quicker, real game has a lower minimum
+const initialMinClues = 13;
+
 describe('getGameGrid', () => {
   it('should return a game grid of objects, the same size as the grid passed in', () => {
-    const gameGrid = getGameGrid(fullGrid);
+    const gameGrid = getGameGrid(fullGrid, initialMinClues);
     expect(gameGrid).toHaveLength(5);
     expect(gameGrid[0]).toHaveLength(5);
   });
 
   it('should return a game grid of objects, with "value" and "greaterThan" properties', () => {
-    const gameGrid = getGameGrid(fullGrid);
+    const gameGrid = getGameGrid(fullGrid, initialMinClues);
     gameGrid.flat().forEach(block => {
       expect(block).toHaveProperty('value');
       expect(block).toHaveProperty('greaterThan');
     });
   });
 
-  it('should return a total of between 8 and 10 clues ("value" and "greaterThan")', () => {
-    const gameGrid = getGameGrid(fullGrid);
+  it('should return a minimum of the "minimum" clues passed in ("value" and "greaterThan" together)', () => {
+    const gameGrid = getGameGrid(fullGrid, initialMinClues);
     const count = countClues(gameGrid);
-    expect(count).toBeGreaterThanOrEqual(8);
-    expect(count).toBeLessThanOrEqual(10);
+    expect(count).toBeGreaterThanOrEqual(initialMinClues);
   });
 
   it('should return a random number of clues, within the stated bounds', () => {
     const counts = [...new Array(5)]
-      .map(() => getGameGrid(fullGrid, 10))
+      .map(() => getGameGrid(fullGrid, initialMinClues))
       .map(countClues);
     const countsAllEqual = counts.every(count => count === counts[0]);
     expect(countsAllEqual).toBeFalsy();
   });
 
   it('should have an empty array for all blocks without "greater than" clues', () => {
-    const gameGrid = getGameGrid(fullGrid);
+    const gameGrid = getGameGrid(fullGrid, initialMinClues);
     const allAreArrays = gameGrid
       .flat()
       .filter(({ greaterThan }) => !greaterThan.length)
@@ -49,7 +52,7 @@ describe('getGameGrid', () => {
   });
 
   it('should have a null value for all blocks without "value" clues', () => {
-    const gameGrid = getGameGrid(fullGrid);
+    const gameGrid = getGameGrid(fullGrid, initialMinClues);
     const allAreNulls = gameGrid
       .flat()
       .filter(({ value }) => !value)
@@ -58,7 +61,7 @@ describe('getGameGrid', () => {
   });
 
   it('should include the correct grid number where a "value" clue is provided', () => {
-    const gameGrid = getGameGrid(fullGrid);
+    const gameGrid = getGameGrid(fullGrid, initialMinClues);
     gameGrid.forEach((array, coord1) => {
       array.forEach(({ value }, coord2) => {
         if (value) {
@@ -70,7 +73,7 @@ describe('getGameGrid', () => {
   });
 
   it('should include an array of directions when "greater than" is truthy', () => {
-    const gameGrid = getGameGrid(fullGrid);
+    const gameGrid = getGameGrid(fullGrid, initialMinClues);
     const greaterThans = getGreaterThans(gameGrid);
     greaterThans.forEach(directions => {
       directions.forEach(direction => {
@@ -78,6 +81,12 @@ describe('getGameGrid', () => {
         expect(isDirection(direction)).toBeTruthy();
       });
     });
+  });
+
+  it('should include the number of clues necessary for the grid to have a unique solution (adding more clues if necessary)', () => {
+    const gameGrid = getGameGrid(fullGrid, 10);
+    const solutions = solveGameGrid(gameGrid);
+    expect(solutions).toHaveLength(1);
   });
 });
 

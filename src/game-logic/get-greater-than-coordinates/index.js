@@ -1,7 +1,7 @@
 import {
   count2dArrayOccurrences,
   generateCoordinates,
-  getFourFifths,
+  getTwoThirds,
   getRandomIntInclusive,
   getValueAtCoordinates,
   getValueInDirection,
@@ -20,7 +20,7 @@ function getGreaterThanCoordinates(grid, cluesQuota) {
   return greaterThanCoordinates;
 
   function getCoordinatesQuota() {
-    return getRandomIntInclusive(getFourFifths(cluesQuota), cluesQuota);
+    return getRandomIntInclusive(cluesQuota / 2, getTwoThirds(cluesQuota));
   }
 
   function createCoordinatesMap(quota) {

@@ -1,7 +1,7 @@
 import getGreaterThanCoordinates from '.';
 import {
   count2dArrayOccurrences,
-  getFourFifths,
+  getTwoThirds,
   getRandomIntInclusive,
   getValueAtCoordinates,
   getValueInDirection
@@ -43,15 +43,16 @@ describe('getGreaterThanCoordinates', () => {
       });
   });
 
-  it('should return a total number of coordinates representing between four and five fifths of the number passed in', () => {
+  it('should return a total number of coordinates representing between half and two thirds of the number passed in', () => {
     const totalClues = getRandomIntInclusive(8, 10);
     const greaterThanCoordinates = getGreaterThanCoordinates(
       fullGrid,
       totalClues
     );
     const totalCoordinates = countTotalCoordinates(greaterThanCoordinates);
-    const fourFifthsOfTotal = getFourFifths(totalClues);
-    expect(totalCoordinates).toBeGreaterThanOrEqual(fourFifthsOfTotal);
+    const twoThirdsOfTotal = getTwoThirds(totalClues);
+    expect(totalCoordinates).toBeGreaterThanOrEqual(totalClues / 2);
+    expect(totalCoordinates).toBeLessThanOrEqual(twoThirdsOfTotal);
   });
 
   it('should return a random number of coordinates (within the accepted bounds)', () => {
