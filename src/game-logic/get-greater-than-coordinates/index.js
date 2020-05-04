@@ -9,7 +9,7 @@ import {
 } from '../helpers';
 
 /**
- * Returns coordinates for squares where 'greater than' chevrons should be shown, ensuring that the choices of squares make logical sense
+ * Returns coordinates for blocks where 'greater than' chevrons should be shown, ensuring that the choices of blocks make logical sense
  * @param {array} grid A full 5*5 Futoshiki grid
  * @param {number} number The number of individual coordinates to generate
  */

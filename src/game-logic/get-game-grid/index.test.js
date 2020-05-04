@@ -18,9 +18,9 @@ describe('getGameGrid', () => {
 
   it('should return a game grid of objects, with "value" and "greaterThan" properties', () => {
     const gameGrid = getGameGrid(fullGrid);
-    gameGrid.flat().forEach(square => {
-      expect(square).toHaveProperty('value');
-      expect(square).toHaveProperty('greaterThan');
+    gameGrid.flat().forEach(block => {
+      expect(block).toHaveProperty('value');
+      expect(block).toHaveProperty('greaterThan');
     });
   });
 
@@ -39,7 +39,7 @@ describe('getGameGrid', () => {
     expect(countsAllEqual).toBeFalsy();
   });
 
-  it('should have an empty array for all squares without "greater than" clues', () => {
+  it('should have an empty array for all blocks without "greater than" clues', () => {
     const gameGrid = getGameGrid(fullGrid);
     const allAreArrays = gameGrid
       .flat()
@@ -48,7 +48,7 @@ describe('getGameGrid', () => {
     expect(allAreArrays).toBeTruthy();
   });
 
-  it('should have a null value for all squares without "value" clues', () => {
+  it('should have a null value for all blocks without "value" clues', () => {
     const gameGrid = getGameGrid(fullGrid);
     const allAreNulls = gameGrid
       .flat()

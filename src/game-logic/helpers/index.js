@@ -1,3 +1,5 @@
+export { default as arraysMatch } from './arrays-match';
+export { default as cloneArray } from './clone-array';
 export { default as count2dArrayOccurrences } from './count-2d-array-occurrences';
 export { default as generateCoordinates } from './generate-coordinates';
 export { default as getFourFifths } from './get-four-fifths';
