@@ -1,15 +1,50 @@
 import React, { Children, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import useMousetrap from 'react-hook-mousetrap';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Container from './container';
 import { Row } from 'components';
-import { createGrid } from 'reducers';
+import { getValueAtCoordinates, traverseGrid } from 'game-logic';
+import { createGrid, selectBlock, setBlockValue } from 'reducers';
 
 const Grid = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(createGrid());
   }, [dispatch]);
+
+  const selectedBlock = useSelector(({ selectedBlock }) => selectedBlock);
+  const gameGrid = useSelector(({ gameGrid }) => gameGrid);
+  useMousetrap('up', () => {
+    if (selectedBlock)
+      dispatch(selectBlock(traverseGrid(selectedBlock, 'above')));
+  });
+  useMousetrap('down', () => {
+    if (selectedBlock)
+      dispatch(selectBlock(traverseGrid(selectedBlock, 'below')));
+  });
+  useMousetrap('left', () => {
+    if (selectedBlock)
+      dispatch(selectBlock(traverseGrid(selectedBlock, 'left')));
+  });
+  useMousetrap('right', () => {
+    if (selectedBlock)
+      dispatch(selectBlock(traverseGrid(selectedBlock, 'right')));
+  });
+
+  function enterValue(enteredValue) {
+    if (!selectedBlock) return;
+    const clueValue = getValueAtCoordinates(gameGrid, selectedBlock).value;
+    if (!clueValue) dispatch(setBlockValue(selectedBlock, enteredValue));
+  }
+
+  useMousetrap('1', () => enterValue(1));
+  useMousetrap('2', () => enterValue(2));
+  useMousetrap('3', () => enterValue(3));
+  useMousetrap('4', () => enterValue(4));
+  useMousetrap('5', () => enterValue(5));
+  useMousetrap('backspace', () => enterValue(null));
+  useMousetrap('del', () => enterValue(null));
 
   return (
     <Container className="grid">

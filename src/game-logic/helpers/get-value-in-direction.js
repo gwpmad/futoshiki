@@ -1,4 +1,4 @@
-import { getValueAtCoordinates } from '.';
+import { getValueAtCoordinates } from 'game-logic';
 
 /**
  * Returns the value in a 2D array one step in a specified direction from the specified coordinates.

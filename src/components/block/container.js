@@ -1,11 +1,12 @@
 import styled, { css } from 'styled-components';
 
 const Container = styled.div`
-  ${({ theme }) => {
+  ${({ containsValueClue, isActive, theme }) => {
     return css`
       align-items: center;
-      background-color: ${theme.colors.white};
-      border: solid 3px ${theme.colors.green};
+      background-color: ${isActive ? 'cornsilk' : theme.colors.white};
+      border: solid 3px ${isActive ? 'black' : theme.colors.green};
+      color: ${containsValueClue ? 'black' : theme.colors.biroBlue};
       cursor: pointer;
       display: flex;
       flex-basis: 0; /* sets the main size for all blocks */
@@ -24,6 +25,7 @@ const Container = styled.div`
       }
 
       .chevron {
+        color: black;
         cursor: auto;
         font-size: smaller;
         position: absolute;

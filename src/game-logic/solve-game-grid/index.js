@@ -1,10 +1,6 @@
 import { SIDE_LENGTH } from 'constant-values';
-import {
-  arraysMatch,
-  cloneArray,
-  getValueAtCoordinates,
-  getValueInDirection
-} from '../helpers';
+import { getValueAtCoordinates } from 'game-logic';
+import { arraysMatch, cloneArray, getValueInDirection } from '../helpers';
 
 const oppositeDirections = [
   ['right', 'left'],

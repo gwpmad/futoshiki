@@ -1,6 +1,5 @@
 import getGameGrid from '.';
-import { getValueAtCoordinates } from '../helpers';
-import { solveGameGrid } from 'game-logic';
+import { getValueAtCoordinates, solveGameGrid } from 'game-logic';
 
 const fullGrid = [
   [1, 3, 5, 4, 2],
@@ -14,17 +13,16 @@ const fullGrid = [
 const initialMinClues = 13;
 
 describe('getGameGrid', () => {
-  it('should return a game grid of objects, the same size as the grid passed in', () => {
+  it('should return a game grid the same size as the grid passed in', () => {
     const gameGrid = getGameGrid(fullGrid, initialMinClues);
     expect(gameGrid).toHaveLength(5);
     expect(gameGrid[0]).toHaveLength(5);
   });
 
-  it('should return a game grid of objects, with "value" and "greaterThan" properties', () => {
+  it('should return a game grid of objects', () => {
     const gameGrid = getGameGrid(fullGrid, initialMinClues);
     gameGrid.flat().forEach(block => {
-      expect(block).toHaveProperty('value');
-      expect(block).toHaveProperty('greaterThan');
+      expect(typeof block).toEqual('object');
     });
   });
 
@@ -51,22 +49,28 @@ describe('getGameGrid', () => {
     expect(allAreArrays).toBeTruthy();
   });
 
-  it('should have a null value for all blocks without "value" clues', () => {
+  it('should have a null "enteredValue" prop and no "value" prop for all blocks without "value" clues', () => {
     const gameGrid = getGameGrid(fullGrid, initialMinClues);
-    const allAreNulls = gameGrid
+    gameGrid
       .flat()
       .filter(({ value }) => !value)
-      .every(({ value }) => value === null);
-    expect(allAreNulls).toBeTruthy();
+      .forEach(block => {
+        expect(block).not.toHaveProperty('value');
+        expect(block.enteredValue).toEqual(null);
+      });
   });
 
-  it('should include the correct grid number where a "value" clue is provided', () => {
+  it('should include the correct grid number and no "enteredValue" prop where a "value" clue is provided', () => {
     const gameGrid = getGameGrid(fullGrid, initialMinClues);
-    gameGrid.forEach((array, coord1) => {
-      array.forEach(({ value }, coord2) => {
-        if (value) {
-          const realValue = getValueAtCoordinates(fullGrid, [coord1, coord2]);
-          expect(value).toEqual(realValue);
+    gameGrid.forEach((array, rowIndex) => {
+      array.forEach((block, colIndex) => {
+        if (block.value) {
+          const realValue = getValueAtCoordinates(fullGrid, [
+            rowIndex,
+            colIndex
+          ]);
+          expect(block.value).toEqual(realValue);
+          expect(block).not.toHaveProperty('enteredValue');
         }
       });
     });

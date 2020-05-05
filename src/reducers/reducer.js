@@ -13,6 +13,26 @@ function reducer(state = initialState, action) {
         fullGrid,
         gameGrid
       };
+    case actionTypes.SELECT_BLOCK:
+      return {
+        ...state,
+        selectedBlock: action.coords
+      };
+    case actionTypes.SET_BLOCK_VALUE:
+      return {
+        ...state,
+        gameGrid: state.gameGrid.map((row, rowIndex) =>
+          row.map((block, colIndex) => {
+            if (
+              state.selectedBlock[0] === rowIndex &&
+              state.selectedBlock[1] === colIndex
+            ) {
+              return { ...block, enteredValue: action.enteredValue };
+            }
+            return block;
+          })
+        )
+      };
     default:
       return state;
   }

@@ -1,9 +1,9 @@
+import { getValueAtCoordinates } from 'game-logic';
 import {
   count2dArrayOccurrences,
   generateCoordinates,
   getTwoThirds,
   getRandomIntInclusive,
-  getValueAtCoordinates,
   getValueInDirection,
   shuffleArray
 } from '../helpers';

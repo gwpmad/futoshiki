@@ -1,9 +1,9 @@
 import getGreaterThanCoordinates from '.';
+import { getValueAtCoordinates } from 'game-logic';
 import {
   count2dArrayOccurrences,
   getTwoThirds,
   getRandomIntInclusive,
-  getValueAtCoordinates,
   getValueInDirection
 } from '../helpers';
 

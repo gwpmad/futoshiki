@@ -1,6 +1,6 @@
 import { count2dArrayOccurrences, generateCoordinates } from '../helpers';
 
-function getValueCoordinates(quota) {
+function createValueCoordinates(quota) {
   const coordinatesList = [];
   for (let i = 0; i < quota; i++) {
     let newCoordinates;
@@ -17,4 +17,4 @@ function canUseCoordinates(array, newCoords) {
   return count2dArrayOccurrences(array, newCoords) === 0;
 }
 
-export default getValueCoordinates;
+export default createValueCoordinates;
