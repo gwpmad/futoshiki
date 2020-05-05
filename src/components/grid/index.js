@@ -14,30 +14,26 @@ const Grid = () => {
   }, [dispatch]);
 
   const selectedBlock = useSelector(({ selectedBlock }) => selectedBlock);
-  const gameGrid = useSelector(({ gameGrid }) => gameGrid);
-  useMousetrap('up', () => {
+  const [moveUp, moveDown, moveLeft, moveRight] = [
+    'above',
+    'below',
+    'left',
+    'right'
+  ].map(direction => () => {
     if (selectedBlock)
-      dispatch(selectBlock(traverseGrid(selectedBlock, 'above')));
+      dispatch(selectBlock(traverseGrid(selectedBlock, direction)));
   });
-  useMousetrap('down', () => {
-    if (selectedBlock)
-      dispatch(selectBlock(traverseGrid(selectedBlock, 'below')));
-  });
-  useMousetrap('left', () => {
-    if (selectedBlock)
-      dispatch(selectBlock(traverseGrid(selectedBlock, 'left')));
-  });
-  useMousetrap('right', () => {
-    if (selectedBlock)
-      dispatch(selectBlock(traverseGrid(selectedBlock, 'right')));
-  });
+  useMousetrap('up', moveUp);
+  useMousetrap('down', moveDown);
+  useMousetrap('left', moveLeft);
+  useMousetrap('right', moveRight);
 
+  const gameGrid = useSelector(({ gameGrid }) => gameGrid);
   function enterValue(enteredValue) {
     if (!selectedBlock) return;
     const clueValue = getValueAtCoordinates(gameGrid, selectedBlock).value;
     if (!clueValue) dispatch(setBlockValue(selectedBlock, enteredValue));
   }
-
   useMousetrap('1', () => enterValue(1));
   useMousetrap('2', () => enterValue(2));
   useMousetrap('3', () => enterValue(3));
