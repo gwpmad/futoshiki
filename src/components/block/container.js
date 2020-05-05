@@ -39,7 +39,7 @@ const Container = styled.div`
       }
 
       .chevron--above {
-        transform: rotate(90deg);
+        transform: rotate(270deg);
         bottom: 98%;
       }
 
