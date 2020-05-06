@@ -24,6 +24,11 @@ const Container = styled.div`
         float: left;
       }
 
+      &:hover {
+        background-color: cornsilk;
+        border: solid 3px black;
+      }
+
       .chevron {
         color: black;
         cursor: auto;
