@@ -1,9 +1,12 @@
 export default {
   colors: {
-    biroBlue: '#0000cd',
-    blue: '#8aaae5',
-    green: '#2bae66ff',
-    lightBlue: '#8ddde5',
+    blue: '#8ac2e5',
+    grey: '#4b6b7e',
+    lightBlack: '#323232',
+    lightBlue: '#dcffffde',
+    lilac: '#9a8ae5',
+    midBlue: '#8dd0e5',
+    pastelBlue: '#6785e1',
     pink: '#ffa5ac',
     white: '#ffffff'
   }

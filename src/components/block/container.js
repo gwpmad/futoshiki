@@ -4,9 +4,14 @@ const Container = styled.div`
   ${({ containsValueClue, isActive, theme }) => {
     return css`
       align-items: center;
-      background-color: ${isActive ? 'cornsilk' : theme.colors.white};
-      border: solid 3px ${isActive ? 'black' : theme.colors.green};
-      color: ${containsValueClue ? 'black' : theme.colors.biroBlue};
+      background-color: ${isActive
+        ? theme.colors.lightBlue
+        : theme.colors.white};
+      border: solid 3px
+        ${isActive ? theme.colors.lightBlue : theme.colors.lightBlack};
+      color: ${containsValueClue
+        ? theme.colors.lightBlack
+        : theme.colors.pastelBlue};
       cursor: pointer;
       display: flex;
       flex-basis: 0; /* sets the main size for all blocks */
@@ -25,12 +30,11 @@ const Container = styled.div`
       }
 
       &:hover {
-        background-color: cornsilk;
-        border: solid 3px black;
+        background-color: ${theme.colors.lightBlue};
       }
 
       .chevron {
-        color: black;
+        color: ${theme.colors.lightBlack};
         cursor: auto;
         font-size: smaller;
         position: absolute;

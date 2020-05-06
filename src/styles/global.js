@@ -14,12 +14,12 @@ export default createGlobalStyle`
         #root {
           height: 100%;
           background: radial-gradient(
-            ${theme.colors.lightBlue},
+            ${theme.colors.midBlue},
             ${theme.colors.blue}
           );
           display: flex;
           justify-content: center;
-          font-family: monospace;
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
         }
       }
     }

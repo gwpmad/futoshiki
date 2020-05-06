@@ -14,7 +14,7 @@ ReactDOM.render(
     <GlobalStyles />
     <Provider store={store}>
       <Content className="content">
-        <Title>FUTOSHIKI</Title>
+        <Title>Futoshiki</Title>
         <Grid />
       </Content>
     </Provider>
