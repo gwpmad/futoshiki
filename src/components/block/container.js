@@ -1,17 +1,12 @@
 import styled, { css } from 'styled-components';
 
 const Container = styled.div`
-  ${({ containsValueClue, isActive, theme }) => {
+  ${({ containsValueClue, isActive, theme: { colors } }) => {
     return css`
       align-items: center;
-      background-color: ${isActive
-        ? theme.colors.lightBlue
-        : theme.colors.white};
-      border: solid 3px
-        ${isActive ? theme.colors.lightBlue : theme.colors.lightBlack};
-      color: ${containsValueClue
-        ? theme.colors.lightBlack
-        : theme.colors.pastelBlue};
+      background-color: ${isActive ? colors.lightBlue : colors.white};
+      border: solid 3px ${isActive ? colors.transparent : colors.lightBlack};
+      color: ${containsValueClue ? colors.lightBlack : colors.pastelBlue};
       cursor: pointer;
       display: flex;
       flex-basis: 0; /* sets the main size for all blocks */
@@ -30,11 +25,11 @@ const Container = styled.div`
       }
 
       &:hover {
-        background-color: ${theme.colors.lightBlue};
+        background-color: ${colors.lightBlue};
       }
 
       .chevron {
-        color: ${theme.colors.lightBlack};
+        color: ${colors.lightBlack};
         cursor: auto;
         font-size: smaller;
         position: absolute;

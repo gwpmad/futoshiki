@@ -8,6 +8,7 @@ export default {
     midBlue: '#8dd0e5',
     pastelBlue: '#6785e1',
     pink: '#ffa5ac',
+    transparent: 'rgba(0, 0, 0, 0)',
     white: '#ffffff'
   }
 };
