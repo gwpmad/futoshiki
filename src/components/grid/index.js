@@ -28,6 +28,8 @@ const Grid = () => {
   useMousetrap('left', moveLeft);
   useMousetrap('right', moveRight);
 
+  useMousetrap('esc', () => dispatch(selectBlock(null)));
+
   const gameGrid = useSelector(({ gameGrid }) => gameGrid);
   function enterValue(enteredValue) {
     if (!selectedBlock) return;
