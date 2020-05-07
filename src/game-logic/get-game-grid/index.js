@@ -67,7 +67,7 @@ function addEnteredValueProperties(gameGrid) {
 
 function noUniqueSolution(gameGrid) {
   const solutions = solveGameGrid(gameGrid);
-  return solutions.length > 1;
+  return solutions.length !== 1;
 }
 
 export default getGameGrid;

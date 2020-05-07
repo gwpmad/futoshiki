@@ -46,10 +46,3 @@ const Block = ({ rowIndex, colIndex }) => {
 };
 
 export default Block;
-
-// solve(gameGrid) function (reused in future via button in UI) - equivalent to run()
-// takes an optional array of existing solutions to compare against - will look for another solution if the one it finds matches one in the array
-
-// if another solution is returned, calls addExtraClue(grid) then tries again
-
-// addExtraClue(grid) function, adds another clue, perhaps a random 50/50 between greaterThan or value
