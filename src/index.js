@@ -15,7 +15,7 @@ ReactDOM.render(
     <Provider store={store}>
       <AppContainer>
         <Content className="content">
-          <Title>FUTOSHIKI</Title>
+          <Title>Futoshiki</Title>
           <Grid />
         </Content>
       </AppContainer>

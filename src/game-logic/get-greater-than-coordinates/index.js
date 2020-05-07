@@ -48,8 +48,7 @@ function getGreaterThanCoordinates(grid, cluesQuota) {
   function getValidDirection(map, newCoords) {
     const shuffledDirections = shuffleArray(Object.keys(map));
 
-    for (let i = 0; i < shuffledDirections.length; i++) {
-      const direction = shuffledDirections[i];
+    for (let direction of shuffledDirections) {
       const valid =
         !coordsAlreadyUsedWithDirection(newCoords, direction, map) &&
         isGreaterThanNeighbour(newCoords, direction);
