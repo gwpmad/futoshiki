@@ -14,9 +14,11 @@ import {
 
 const Grid = () => {
   const dispatch = useDispatch();
+
+  const gameGrid = useSelector(({ gameGrid }) => gameGrid);
   useEffect(() => {
-    dispatch(createGrid());
-  }, [dispatch]);
+    if (!gameGrid) dispatch(createGrid());
+  }, [dispatch, gameGrid]);
 
   const selectedBlock = useSelector(({ selectedBlock }) => selectedBlock);
   const [moveUp, moveDown, moveLeft, moveRight] = [
@@ -35,7 +37,6 @@ const Grid = () => {
 
   useMousetrap('esc', () => dispatch(deselectBlock()));
 
-  const gameGrid = useSelector(({ gameGrid }) => gameGrid);
   function enterValue(enteredValue) {
     if (!selectedBlock) return;
     const clueValue = getValueAtCoordinates(gameGrid, selectedBlock).value;
