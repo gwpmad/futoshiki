@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 
-import { AppContainer, Content, Grid, Title } from 'components';
+import { AppContainer, Content, Grid, BelowGame, Title } from 'components';
 import { configureStore, unregister } from 'core';
 import { GlobalStyles, theme } from 'styles';
 
@@ -17,6 +17,7 @@ ReactDOM.render(
         <Content className="content">
           <Title>Futoshiki</Title>
           <Grid />
+          <BelowGame />
         </Content>
       </AppContainer>
     </Provider>
