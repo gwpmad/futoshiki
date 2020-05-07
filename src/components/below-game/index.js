@@ -5,7 +5,7 @@ import { NewGameButton } from 'components';
 
 const BelowGame = () => {
   return (
-    <Container>
+    <Container className="below-game">
       <NewGameButton />
     </Container>
   );

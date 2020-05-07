@@ -11,7 +11,11 @@ const AppContainer = ({ children }) => {
     if (selectedBlock) dispatch(deselectBlock());
   }, [dispatch, selectedBlock]);
 
-  return <Container onClick={dispatchDeselectBlock}>{children}</Container>;
+  return (
+    <Container className="app-container" onClick={dispatchDeselectBlock}>
+      {children}
+    </Container>
+  );
 };
 
 export default AppContainer;

@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 const Container = styled.div`
   ${({ containsValueClue, isActive, theme: { colors } }) => css`
     align-items: center;
-    background-color: ${isActive ? colors.lightBlue : colors.white};
+    background-color: ${colors.white};
     border: solid 3px ${isActive ? colors.transparent : colors.lightBlack};
     color: ${containsValueClue ? colors.lightBlack : colors.pastelBlue};
     cursor: pointer;
@@ -24,7 +24,7 @@ const Container = styled.div`
     }
 
     &:hover {
-      background-color: ${colors.lightBlue};
+      background-color: ${isActive ? colors.white : colors.lightBlue};
     }
 
     .chevron {
