@@ -13,6 +13,9 @@ function reducer(state = initialState, action) {
         fullGrid,
         gameGrid
       };
+    case actionTypes.DESELECT_BLOCK:
+      const { selectedBlock, ...restOfState } = state;
+      return restOfState;
     case actionTypes.SELECT_BLOCK:
       return {
         ...state,

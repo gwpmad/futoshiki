@@ -23,7 +23,8 @@ const Block = ({ rowIndex, colIndex }) => {
   });
 
   const dispatch = useDispatch();
-  function handleClick() {
+  function handleClick(e) {
+    e.stopPropagation();
     if (!isActive) dispatch(selectBlock([rowIndex, colIndex]));
   }
 

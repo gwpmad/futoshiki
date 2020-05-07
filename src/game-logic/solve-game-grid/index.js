@@ -11,7 +11,7 @@ const oppositeDirections = [
 
 /**
  * Returns an array of 2d arrays, each a potential solution to the gameGrid passed in
- * @param {array} gameGrid a 2d Futoshiki game grid with value and greater than constraints
+ * @param {array} gameGrid A 2d Futoshiki game grid with value and greater than constraints
  */
 function solveGameGrid(gameGrid) {
   const solutions = [];

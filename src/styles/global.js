@@ -13,13 +13,6 @@ export default createGlobalStyle`
 
         #root {
           height: 100%;
-          background: radial-gradient(
-            ${theme.colors.midBlue},
-            ${theme.colors.blue}
-          );
-          display: flex;
-          justify-content: center;
-          font-family: Verdana, Geneva, Tahoma, sans-serif;
         }
       }
     }

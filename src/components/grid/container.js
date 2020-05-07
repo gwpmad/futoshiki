@@ -1,11 +1,9 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const Container = styled.div`
-  ${() => css`
-    display: flex;
-    flex-direction: column;
-    margin: 10px 0;
-  `}
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
 `;
 
 export default Container;

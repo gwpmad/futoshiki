@@ -5,7 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import Container from './container';
 import { Row } from 'components';
 import { getValueAtCoordinates, traverseGrid } from 'game-logic';
-import { createGrid, selectBlock, setBlockValue } from 'reducers';
+import {
+  createGrid,
+  deselectBlock,
+  selectBlock,
+  setBlockValue
+} from 'reducers';
 
 const Grid = () => {
   const dispatch = useDispatch();
@@ -28,7 +33,7 @@ const Grid = () => {
   useMousetrap('left', moveLeft);
   useMousetrap('right', moveRight);
 
-  useMousetrap('esc', () => dispatch(selectBlock(null)));
+  useMousetrap('esc', () => dispatch(deselectBlock()));
 
   const gameGrid = useSelector(({ gameGrid }) => gameGrid);
   function enterValue(enteredValue) {

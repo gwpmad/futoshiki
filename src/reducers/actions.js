@@ -1,6 +1,7 @@
 import * as actionTypes from './action-types';
 
 export const createGrid = () => ({ type: actionTypes.CREATE_GRID });
+export const deselectBlock = () => ({ type: actionTypes.DESELECT_BLOCK });
 export const setBlockValue = (coords, enteredValue) => ({
   coords,
   enteredValue,
