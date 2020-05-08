@@ -9,7 +9,7 @@ export default {
     midBlue: '#8dd0e5',
     pastelBlue: '#6785e1',
     pink: '#ffa5ac',
-    red: '#ff0015',
+    red: '#ff0015bd',
     transparent: 'rgba(0, 0, 0, 0)',
     white: '#ffffff'
   }

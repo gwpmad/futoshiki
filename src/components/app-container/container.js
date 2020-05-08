@@ -12,13 +12,13 @@ const Container = styled.div`
     z-index: 1;
 
     &:before {
-      background-image: radial-gradient(${colors.gold}, ${colors.red});
+      background-image: radial-gradient(#d48137, ${colors.red});
       bottom: 0;
       content: '';
       left: 0;
       opacity: ${gameCompleted ? '1' : '0'};
       position: absolute;
-      transition: opacity 0.5s linear;
+      transition: opacity 0.3s linear;
       right: 0;
       top: 0;
       z-index: -1;
