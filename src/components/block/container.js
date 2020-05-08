@@ -19,6 +19,7 @@ const Container = styled.div`
       justify-content: center;
       margin: 15px;
       position: relative;
+      transition: color 0.5s ease;
       user-select: none;
 
       &:before {

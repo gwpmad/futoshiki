@@ -2,6 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import useMousetrap from 'react-hook-mousetrap';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { Content, Grid, BelowGame, Title } from 'components';
 import Container from './container';
 import { getValueAtCoordinates, traverseGrid } from 'game-logic';
 import {
@@ -17,8 +18,6 @@ const AppContainer = ({ children }) => {
   const dispatchDeselectBlock = useCallback(() => {
     if (selectedBlock) dispatch(deselectBlock());
   }, [dispatch, selectedBlock]);
-
-  const gameCompleted = useSelector(({ gameCompleted }) => gameCompleted);
 
   const gameGridExists = useSelector(({ gameGrid }) => !!gameGrid);
   useEffect(() => {
@@ -60,13 +59,20 @@ const AppContainer = ({ children }) => {
   useMousetrap('backspace', () => enterValue(null));
   useMousetrap('del', () => enterValue(null));
 
+  const gameCompleted = useSelector(({ gameCompleted }) => gameCompleted);
+  const title = gameCompleted ? 'Correct!' : 'Futoshiki';
+
   return (
     <Container
       className="app-container"
       gameCompleted={gameCompleted}
       onClick={dispatchDeselectBlock}
     >
-      {children}
+      <Content className="content">
+        <Title className="title">{title}</Title>
+        <Grid />
+        <BelowGame />
+      </Content>
     </Container>
   );
 };

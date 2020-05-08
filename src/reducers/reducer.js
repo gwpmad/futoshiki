@@ -39,8 +39,13 @@ function reducer(state = initialState, action) {
       };
     case actionTypes.CHECK_SOLUTION:
       const correctSolution = checkSolution(state.gameGrid, state.fullGrid);
-      console.log('correctSolution', correctSolution);
       if (!correctSolution) return state;
+      return {
+        ...state,
+        gameCompleted: true,
+        selectedBlock: null
+      };
+    case 'CHEAT':
       return {
         ...state,
         gameCompleted: true,
