@@ -1,8 +1,8 @@
-import React, { Children } from 'react';
+import React, { Children, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Container from './container';
-import { selectBlock } from 'reducers';
+import { checkSolution, selectBlock } from 'reducers';
 
 const Block = ({ rowIndex, colIndex }) => {
   const greaterThan = useSelector(({ gameGrid }) =>
@@ -16,26 +16,35 @@ const Block = ({ rowIndex, colIndex }) => {
   const containsValueClue = useSelector(({ gameGrid }) =>
     gameGrid ? Boolean(gameGrid[rowIndex][colIndex].value) : false
   );
-  const content = useSelector(({ gameGrid }) => {
-    if (!gameGrid) return;
+  const blockValue = useSelector(({ gameGrid }) => {
+    if (!gameGrid) return null;
     const { enteredValue, value } = gameGrid[rowIndex][colIndex];
     return containsValueClue ? value : enteredValue;
   });
 
+  const gameCompleted = useSelector(({ gameCompleted }) => gameCompleted);
+
   const dispatch = useDispatch();
   function handleClick(e) {
     e.stopPropagation();
-    if (!isActive) dispatch(selectBlock([rowIndex, colIndex]));
+    if (!isActive && !gameCompleted)
+      dispatch(selectBlock([rowIndex, colIndex]));
   }
+
+  useEffect(() => {
+    if (gameCompleted || containsValueClue || !blockValue) return;
+    dispatch(checkSolution());
+  }, [containsValueClue, blockValue, gameCompleted, dispatch]);
 
   return (
     <Container
       containsValueClue={containsValueClue}
+      gameCompleted={gameCompleted}
       greaterThan={greaterThan}
       isActive={isActive}
       onClick={handleClick}
     >
-      {content || ''}
+      {blockValue || ''}
       {Children.toArray(
         greaterThan.map(direction => (
           <div className={`chevron chevron--${direction}`}>❯</div>

@@ -1,5 +1,5 @@
 import * as actionTypes from './action-types';
-import { createFullGrid, getGameGrid } from 'game-logic';
+import { checkSolution, createFullGrid, getGameGrid } from 'game-logic';
 
 const initialState = {};
 
@@ -12,7 +12,8 @@ function reducer(state = initialState, action) {
         ...state,
         fullGrid,
         gameGrid,
-        selectedBlock: null
+        selectedBlock: null,
+        gameCompleted: false
       };
     case actionTypes.DESELECT_BLOCK:
       return { ...state, selectedBlock: null };
@@ -35,6 +36,15 @@ function reducer(state = initialState, action) {
             return block;
           })
         )
+      };
+    case actionTypes.CHECK_SOLUTION:
+      const correctSolution = checkSolution(state.gameGrid, state.fullGrid);
+      console.log('correctSolution', correctSolution);
+      if (!correctSolution) return state;
+      return {
+        ...state,
+        gameCompleted: true,
+        selectedBlock: null
       };
     default:
       return state;

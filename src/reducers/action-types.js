@@ -1,3 +1,4 @@
+export const CHECK_SOLUTION = 'CHECK_SOLUTION';
 export const CREATE_GRID = 'CREATE_GRID';
 export const DESELECT_BLOCK = 'DESELECT_BLOCK';
 export const SELECT_BLOCK = 'SELECT_BLOCK';
