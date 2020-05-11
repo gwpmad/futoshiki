@@ -3,7 +3,10 @@ import styled, { css } from 'styled-components';
 const Container = styled.div`
   ${({ gameCompleted, theme: { colors } }) => css`
     align-items: center;
-    background-image: radial-gradient(${colors.midBlue}, ${colors.blue});
+    background-image: radial-gradient(
+      ${colors.lightTurquoise},
+      ${colors.darkTurquoise}
+    );
     display: flex;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     height: 100%;
@@ -12,7 +15,10 @@ const Container = styled.div`
     z-index: 1;
 
     &:before {
-      background-image: radial-gradient(#d48137, ${colors.red});
+      background-image: radial-gradient(
+        ${colors.limeGreen},
+        ${colors.faintLimeGreen}
+      );
       bottom: 0;
       content: '';
       left: 0;

@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 const Container = styled.div`
   ${({ containsValueClue, gameCompleted, isActive, theme: { colors } }) => {
     let color = containsValueClue ? colors.lightBlack : colors.pastelBlue;
-    if (gameCompleted) color = colors.gold;
+    if (gameCompleted) color = colors.midBlue;
 
     return css`
       align-items: center;
