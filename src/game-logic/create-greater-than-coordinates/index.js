@@ -13,7 +13,7 @@ import {
  * @param {array} grid A full 5*5 Futoshiki grid
  * @param {number} number The number of individual coordinates to generate
  */
-function getGreaterThanCoordinates(grid, cluesQuota) {
+function createGreaterThanCoordinates(grid, cluesQuota) {
   const quota = getCoordinatesQuota();
   const greaterThanCoordinates = createCoordinatesMap(quota);
 
@@ -82,4 +82,4 @@ function getGreaterThanCoordinates(grid, cluesQuota) {
   }
 }
 
-export default getGreaterThanCoordinates;
+export default createGreaterThanCoordinates;

@@ -1,3 +1,4 @@
+import { getCoordinatesInDirection } from '.';
 import { getValueAtCoordinates } from 'game-logic';
 
 /**
@@ -7,15 +8,8 @@ import { getValueAtCoordinates } from 'game-logic';
  * @param {array} coordinates The coordinates to step one index away from
  * @param {string} direction
  */
-function getValueInDirection(array, [coord1, coord2], direction) {
-  const adjacentCoordsLookup = {
-    right: [coord1, coord2 + 1],
-    left: [coord1, coord2 - 1],
-    above: [coord1 - 1, coord2],
-    below: [coord1 + 1, coord2]
-  };
-
-  const adjacentCoords = adjacentCoordsLookup[direction];
+function getValueInDirection(array, coords, direction) {
+  const adjacentCoords = getCoordinatesInDirection(coords, direction);
   return getValueAtCoordinates(array, adjacentCoords);
 }
 

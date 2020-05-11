@@ -1,6 +1,6 @@
 import { INITIAL_MIN_CLUES } from 'constant-values';
 import {
-  getGreaterThanCoordinates,
+  createGreaterThanCoordinates,
   createValueCoordinates,
   solveGameGrid
 } from 'game-logic';
@@ -22,20 +22,20 @@ function getEmptyGameGrid(fullGrid) {
 }
 
 function decorateBlocks(gameGrid, fullGrid, cluesQuota) {
-  const { greaterThanCoordinates, valueCoordinates } = getClues(
-    fullGrid,
-    cluesQuota
-  );
-  addGreaterThanClues(gameGrid, greaterThanCoordinates);
-  addValueClues(gameGrid, fullGrid, valueCoordinates);
+  const clues = getClues(fullGrid, cluesQuota);
+  addGreaterThanClues(gameGrid, clues.greaterThanCoordinates);
+  addValueClues(gameGrid, fullGrid, clues.valueCoordinates);
   addEnteredValueProperties(gameGrid);
 }
 
 function getClues(grid, cluesQuota) {
-  const greaterThanCoordinates = getGreaterThanCoordinates(grid, cluesQuota);
+  const greaterThanCoordinates = createGreaterThanCoordinates(grid, cluesQuota);
 
   const valuesQuota = cluesQuota - countGreaterThans(greaterThanCoordinates);
-  const valueCoordinates = createValueCoordinates(valuesQuota);
+  const valueCoordinates = createValueCoordinates(
+    valuesQuota,
+    greaterThanCoordinates
+  );
   return { greaterThanCoordinates, valueCoordinates };
 }
 

@@ -1,4 +1,4 @@
-import getGreaterThanCoordinates from '.';
+import createGreaterThanCoordinates from '.';
 import { getValueAtCoordinates } from 'game-logic';
 import {
   count2dArrayOccurrences,
@@ -15,10 +15,10 @@ const fullGrid = [
   [5, 2, 4, 3, 1]
 ];
 
-describe('getGreaterThanCoordinates', () => {
+describe('createGreaterThanCoordinates', () => {
   it('should generate a map of direction arrays, with coordinates where "greater than" inequalities should be shown', () => {
-    const greaterThanCoordinates = getGreaterThanCoordinates(fullGrid, 10);
-    ['above', 'below', 'left', 'right'].forEach(prop => {
+    const greaterThanCoordinates = createGreaterThanCoordinates(fullGrid, 10);
+    [('above', 'below', 'left', 'right')].forEach(prop => {
       expect(greaterThanCoordinates).toHaveProperty(prop);
       greaterThanCoordinates[prop].forEach(([coord1, coord2]) => {
         expect(typeof coord1).toEqual('number');
@@ -28,13 +28,13 @@ describe('getGreaterThanCoordinates', () => {
   });
 
   it('should return randomised results', () => {
-    const coords1 = getGreaterThanCoordinates(fullGrid, 10);
-    const coords2 = getGreaterThanCoordinates(fullGrid, 10);
+    const coords1 = createGreaterThanCoordinates(fullGrid, 10);
+    const coords2 = createGreaterThanCoordinates(fullGrid, 10);
     expect(coords1).not.toEqual(coords2);
   });
 
   it('should only include indexes between 0 and 4 in all the coordinates', () => {
-    const greaterThanCoordinates = getGreaterThanCoordinates(fullGrid, 10);
+    const greaterThanCoordinates = createGreaterThanCoordinates(fullGrid, 10);
     Object.values(greaterThanCoordinates)
       .flat(2)
       .forEach(idx => {
@@ -45,7 +45,7 @@ describe('getGreaterThanCoordinates', () => {
 
   it('should return a total number of coordinates representing between half and two thirds of the number passed in', () => {
     const totalClues = getRandomIntInclusive(8, 10);
-    const greaterThanCoordinates = getGreaterThanCoordinates(
+    const greaterThanCoordinates = createGreaterThanCoordinates(
       fullGrid,
       totalClues
     );
@@ -57,14 +57,14 @@ describe('getGreaterThanCoordinates', () => {
 
   it('should return a random number of coordinates (within the accepted bounds)', () => {
     const counts = [...new Array(5)]
-      .map(() => getGreaterThanCoordinates(fullGrid, 10))
+      .map(() => createGreaterThanCoordinates(fullGrid, 10))
       .map(result => countTotalCoordinates(result));
     const countsAllEqual = counts.every(count => count === counts[0]);
     expect(countsAllEqual).toBeFalsy();
   });
 
   it('should not include any set of coordinates more than twice overall', () => {
-    const greaterThanCoordinates = getGreaterThanCoordinates(fullGrid, 10);
+    const greaterThanCoordinates = createGreaterThanCoordinates(fullGrid, 10);
     const allCoordinates = getAllCoordinates(greaterThanCoordinates);
     allCoordinates.forEach(coords => {
       const numberOfOccurrences = count2dArrayOccurrences(
@@ -76,7 +76,7 @@ describe('getGreaterThanCoordinates', () => {
   });
 
   it('should not include any set of coordinates which corresponds to a 1 on the grid passed in', () => {
-    const greaterThanCoordinates = getGreaterThanCoordinates(fullGrid, 10);
+    const greaterThanCoordinates = createGreaterThanCoordinates(fullGrid, 10);
     const allCoordinates = getAllCoordinates(greaterThanCoordinates);
     allCoordinates.forEach(coords => {
       expect(getValueAtCoordinates(fullGrid, coords)).not.toEqual(1);
@@ -84,7 +84,7 @@ describe('getGreaterThanCoordinates', () => {
   });
 
   it('should not include a particular set of coordinates more times than the number of lesser values around it on the grid', () => {
-    const greaterThanCoordinates = getGreaterThanCoordinates(fullGrid, 10);
+    const greaterThanCoordinates = createGreaterThanCoordinates(fullGrid, 10);
     const allCoordinates = getAllCoordinates(greaterThanCoordinates);
     allCoordinates.forEach(coords => {
       const lesserValuesCount = countLesserSurroundingValues(fullGrid, coords);
@@ -95,7 +95,7 @@ describe('getGreaterThanCoordinates', () => {
   });
 
   it('should use a valid "greater than" direction for each coordinate', () => {
-    const greaterThanCoordinates = getGreaterThanCoordinates(fullGrid, 10);
+    const greaterThanCoordinates = createGreaterThanCoordinates(fullGrid, 10);
     Object.keys(greaterThanCoordinates).forEach(direction => {
       greaterThanCoordinates[direction].forEach(coords => {
         const currentValue = getValueAtCoordinates(fullGrid, coords);
@@ -106,7 +106,7 @@ describe('getGreaterThanCoordinates', () => {
   });
 
   it('should not include the same coordinates twice within the same direction array', () => {
-    const greaterThanCoordinates = getGreaterThanCoordinates(fullGrid, 10);
+    const greaterThanCoordinates = createGreaterThanCoordinates(fullGrid, 10);
     Object.values(greaterThanCoordinates).forEach(directionArray => {
       directionArray.forEach(coords =>
         expect(
