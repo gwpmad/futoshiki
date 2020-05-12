@@ -12,18 +12,14 @@ const oppositeDirections = [
 /**
  * Returns an array of 2d arrays, each a potential solution to the gameGrid passed in
  * @param {array} gameGrid A 2d Futoshiki game grid with value and greater than constraints
+ * @param {array} solutions An optional array of solved Futoshiki grids - any solutions included will be considered invalid solutions by the algorithm
  */
-function solveGameGrid(gameGrid) {
-  const solutions = [];
-  return collectSolutions(gameGrid, solutions);
-}
-
-function collectSolutions(gameGrid, solutions) {
+function solveGameGrid(gameGrid, solutions = []) {
   if (solutions.length < 15) {
     const solvedGrid = findSolution(gameGrid, solutions);
     if (solvedGrid) {
       solutions.push(solvedGrid);
-      return collectSolutions(gameGrid, solutions);
+      return solveGameGrid(gameGrid, solutions);
     }
   }
   return solutions;
