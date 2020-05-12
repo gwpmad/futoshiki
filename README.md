@@ -19,7 +19,7 @@ A [Futoshiki](https://en.wikipedia.org/wiki/Futoshiki) game built using modern R
 
 ### Game logic
 
-The application generates a random Futoshiki board with a random-within-bounds quota number clues and inequality clues, then feeds it through a brute force algorithm that looks for solutions. Once a solution is found it is stored and the algorithm runs again looking for another. If there is more than one solution, some more clues are added and the algorithm runs once more - this continues until there is only one solution and the board is presented to the user.
+The application generates a Futoshiki board with numbers distributed randomly, along with a random-within-bounds quota of number clues and inequality clues, then feeds it through a brute force algorithm that looks for solutions. Once a solution is found it is stored and the algorithm runs again looking for another. If there is more than one solution, some more clues are added and the algorithm runs once more - this continues until there is only one solution and the board is presented to the user.
 
 ### To run locally
 
