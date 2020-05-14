@@ -1,7 +1,9 @@
-import React, { Children, useEffect } from 'react';
+import React, { Children, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Chevron from './chevron';
 import Container from './container';
+import Notes from './notes';
 import { checkSolution, selectBlock } from 'reducers';
 
 const Block = ({ rowIndex, colIndex }) => {
@@ -23,18 +25,28 @@ const Block = ({ rowIndex, colIndex }) => {
   });
 
   const gameCompleted = useSelector(({ gameCompleted }) => gameCompleted);
+  const notes = useSelector(({ gameGrid }) => {
+    if (!gameGrid || containsValueClue) return null;
+    return gameGrid[rowIndex][colIndex].notes;
+  });
+  const showNotes = useSelector(({ notesMode }) =>
+    !blockValue && notes ? notesMode : false
+  );
 
   const dispatch = useDispatch();
-  function handleClick(e) {
-    e.stopPropagation();
-    if (!isActive && !gameCompleted)
-      dispatch(selectBlock([rowIndex, colIndex]));
-  }
+  const handleClick = useCallback(
+    e => {
+      e.stopPropagation();
+      if (!isActive && !gameCompleted)
+        dispatch(selectBlock([rowIndex, colIndex]));
+    },
+    [isActive, gameCompleted, rowIndex, colIndex, dispatch]
+  );
 
   useEffect(() => {
-    if (gameCompleted || containsValueClue || !blockValue) return;
+    if (gameCompleted || containsValueClue || !blockValue || showNotes) return;
     dispatch(checkSolution());
-  }, [containsValueClue, blockValue, gameCompleted, dispatch]);
+  }, [containsValueClue, blockValue, gameCompleted, showNotes, dispatch]);
 
   return (
     <Container
@@ -43,12 +55,11 @@ const Block = ({ rowIndex, colIndex }) => {
       greaterThan={greaterThan}
       isActive={isActive}
       onClick={handleClick}
+      showNotes={showNotes}
     >
-      {blockValue || ''}
+      {showNotes ? <Notes notes={notes} /> : blockValue || ''}
       {Children.toArray(
-        greaterThan.map(direction => (
-          <div className={`chevron chevron--${direction}`}>❯</div>
-        ))
+        greaterThan.map(direction => <Chevron direction={direction} />)
       )}
     </Container>
   );

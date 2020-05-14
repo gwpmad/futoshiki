@@ -25,7 +25,7 @@ function decorateBlocks(gameGrid, fullGrid, cluesQuota) {
   const clues = getClues(fullGrid, cluesQuota);
   addGreaterThanClues(gameGrid, clues.greaterThanCoordinates);
   addValueClues(gameGrid, fullGrid, clues.valueCoordinates);
-  addEnteredValueProperties(gameGrid);
+  addPropertiesToEmptyBlocks(gameGrid);
 }
 
 function getClues(grid, cluesQuota) {
@@ -57,10 +57,13 @@ function addValueClues(gameGrid, fullGrid, valueCoordinates) {
   });
 }
 
-function addEnteredValueProperties(gameGrid) {
+function addPropertiesToEmptyBlocks(gameGrid) {
   gameGrid.forEach(row =>
     row.forEach(block => {
-      if (!block.value) block.enteredValue = null;
+      if (!block.value) {
+        block.enteredValue = null;
+        block.notes = [];
+      }
     })
   );
 }

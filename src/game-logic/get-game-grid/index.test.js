@@ -60,7 +60,17 @@ describe('getGameGrid', () => {
       });
   });
 
-  it('should include the correct grid number and no "enteredValue" prop where a "value" clue is provided', () => {
+  it('should have a empty "notes" array for all blocks without "value" clues', () => {
+    const gameGrid = getGameGrid(fullGrid, initialMinClues);
+    gameGrid
+      .flat()
+      .filter(({ value }) => !value)
+      .forEach(block => {
+        expect(block.notes).toEqual([]);
+      });
+  });
+
+  it('should include the correct grid number and no "enteredValue" or "notes" props where a "value" clue is provided', () => {
     const gameGrid = getGameGrid(fullGrid, initialMinClues);
     gameGrid.forEach((array, rowIndex) => {
       array.forEach((block, colIndex) => {
@@ -71,6 +81,7 @@ describe('getGameGrid', () => {
           ]);
           expect(block.value).toEqual(realValue);
           expect(block).not.toHaveProperty('enteredValue');
+          expect(block).not.toHaveProperty('notes');
         }
       });
     });

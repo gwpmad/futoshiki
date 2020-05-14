@@ -8,21 +8,22 @@ import { getValueAtCoordinates, traverseGrid } from 'game-logic';
 import {
   createGrid,
   deselectBlock,
+  editBlockNotes,
   selectBlock,
   setBlockValue
 } from 'reducers';
 
-const AppContainer = ({ children }) => {
+const AppContainer = () => {
   const selectedBlock = useSelector(({ selectedBlock }) => selectedBlock);
   const dispatch = useDispatch();
   const dispatchDeselectBlock = useCallback(() => {
     if (selectedBlock) dispatch(deselectBlock());
   }, [dispatch, selectedBlock]);
 
-  const gameGridExists = useSelector(({ gameGrid }) => !!gameGrid);
+  const noGameGrid = useSelector(({ gameGrid }) => !gameGrid);
   useEffect(() => {
-    if (!gameGridExists) dispatch(createGrid());
-  }, [dispatch, gameGridExists]);
+    if (noGameGrid) dispatch(createGrid());
+  }, [dispatch, noGameGrid]);
 
   const [moveUp, moveDown, moveLeft, moveRight] = [
     'above',
@@ -40,24 +41,35 @@ const AppContainer = ({ children }) => {
 
   useMousetrap('esc', () => dispatch(deselectBlock()));
 
-  const canEnterValue = useSelector(
-    ({ gameGrid }) => {
-      if (!selectedBlock || !gameGrid) return false;
-      return !getValueAtCoordinates(gameGrid, selectedBlock).value;
-    },
-    [selectedBlock]
-  );
-  function enterValue(enteredValue) {
-    if (!canEnterValue) return;
-    dispatch(setBlockValue(selectedBlock, enteredValue));
+  const canSetBlockValue = useSelector(({ gameGrid, notesMode }) => {
+    if (!gameGrid || !selectedBlock || notesMode) return false;
+    return !getValueAtCoordinates(gameGrid, selectedBlock).value;
+  });
+
+  const canEditBlockNotes = useSelector(({ gameGrid, notesMode }) => {
+    if (!gameGrid || !selectedBlock || !notesMode) return false;
+    const { enteredValue, value } = getValueAtCoordinates(
+      gameGrid,
+      selectedBlock
+    );
+    return !value && !enteredValue;
+  });
+
+  function handleNumberPress(number) {
+    if (canSetBlockValue) return dispatch(setBlockValue(number));
+    if (canEditBlockNotes) return dispatch(editBlockNotes(number));
   }
-  useMousetrap('1', () => enterValue(1));
-  useMousetrap('2', () => enterValue(2));
-  useMousetrap('3', () => enterValue(3));
-  useMousetrap('4', () => enterValue(4));
-  useMousetrap('5', () => enterValue(5));
-  useMousetrap('backspace', () => enterValue(null));
-  useMousetrap('del', () => enterValue(null));
+  useMousetrap('1', () => handleNumberPress(1));
+  useMousetrap('2', () => handleNumberPress(2));
+  useMousetrap('3', () => handleNumberPress(3));
+  useMousetrap('4', () => handleNumberPress(4));
+  useMousetrap('5', () => handleNumberPress(5));
+
+  function handleDeletePress() {
+    dispatch(setBlockValue(null));
+  }
+  useMousetrap('backspace', handleDeletePress);
+  useMousetrap('del', handleDeletePress);
 
   const gameCompleted = useSelector(({ gameCompleted }) => gameCompleted);
   const title = gameCompleted ? 'Correct!' : 'Futoshiki';

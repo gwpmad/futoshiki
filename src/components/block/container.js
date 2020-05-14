@@ -31,32 +31,6 @@ const Container = styled.div`
       &:hover {
         background-color: ${isActive ? colors.white : colors.lightBlue};
       }
-
-      .chevron {
-        color: ${colors.lightBlack};
-        cursor: auto;
-        font-size: smaller;
-        position: absolute;
-      }
-
-      .chevron--right {
-        left: 114%;
-      }
-
-      .chevron--left {
-        right: 114%;
-        transform: rotate(180deg);
-      }
-
-      .chevron--above {
-        transform: rotate(270deg);
-        bottom: 98%;
-      }
-
-      .chevron--below {
-        transform: rotate(90deg);
-        top: 98%;
-      }
     `;
   }}
 `;
