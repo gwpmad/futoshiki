@@ -2,7 +2,9 @@
   "name": "futoshiki-game",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://gwpmad.github.io/futoshiki",
   "dependencies": {
+    "gh-pages": "^2.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hook-mousetrap": "^2.0.2",
@@ -23,8 +25,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "citest": "CI=true npm test",
     "eject": "react-scripts eject",
-    "lint": "eslint --ext .js,.jsx --max-warnings=0 ."
+    "lint": "eslint --ext .js,.jsx --max-warnings=0 .",
+    "predeploy": "npm run lint && npm run citest && npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
