@@ -4,7 +4,7 @@ const Container = styled.div`
   ${() => css`
     display: flex;
     font-size: 16px;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 90%;
   `}
 `;
