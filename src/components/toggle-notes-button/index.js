@@ -17,9 +17,11 @@ const ToggleNotesButton = () => {
   const notesAction = useSelector(({ notesMode }) =>
     notesMode ? 'Hide' : 'Show'
   );
+  const gameCompleted = useSelector(({ gameCompleted }) => gameCompleted);
+
   return (
-    <Container onClick={dispatchToggleNotesMode}>
-      <span>{notesAction} Notes</span>
+    <Container gameCompleted={gameCompleted} onClick={dispatchToggleNotesMode}>
+      {notesAction} Notes
     </Container>
   );
 };
