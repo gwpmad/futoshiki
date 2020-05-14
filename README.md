@@ -4,8 +4,9 @@ A [Futoshiki](https://en.wikipedia.org/wiki/Futoshiki) game built using modern R
 
 ### Features
 
-- Puzzles guaranteed to have only one solution
-- Automatic detection of correct solution
+- Puzzles are guaranteed to have only one solution
+- Automatically detects when player correctly solves grid
+- Notes mode included for keeping track of possible numbers for each block
 - Game state is remembered (via browser's local storage) even when tab is closed - player can come back later to continue
 
 ### Technologies
@@ -14,6 +15,7 @@ A [Futoshiki](https://en.wikipedia.org/wiki/Futoshiki) game built using modern R
 - Redux
 - Styled Components for CSS
 - Redux Persist for remembering game state
+- Mousetrap for handling keyboard events
 - Game logic written in pure Javascript without libraries
 - Logic is fully tested
 
