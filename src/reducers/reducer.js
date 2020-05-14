@@ -21,7 +21,8 @@ function reducer(state = initialState, action) {
         fullGrid,
         gameGrid,
         selectedBlock: null,
-        gameCompleted: false
+        gameCompleted: false,
+        notesMode: false
       };
 
     case actionTypes.DESELECT_BLOCK:
