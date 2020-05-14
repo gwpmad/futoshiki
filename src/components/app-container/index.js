@@ -66,7 +66,7 @@ const AppContainer = () => {
   useMousetrap('5', () => handleNumberPress(5));
 
   function handleDeletePress() {
-    dispatch(setBlockValue(null));
+    if (canSetBlockValue) dispatch(setBlockValue(null));
   }
   useMousetrap('backspace', handleDeletePress);
   useMousetrap('del', handleDeletePress);
