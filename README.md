@@ -2,6 +2,8 @@
 
 A [Futoshiki](https://en.wikipedia.org/wiki/Futoshiki) game built using modern React/Redux/Styled Components techniques.
 
+Play it [here](https://gwpmad.github.io/futoshiki/).
+
 ### Features
 
 - Puzzles are guaranteed to have only one solution
@@ -11,7 +13,7 @@ A [Futoshiki](https://en.wikipedia.org/wiki/Futoshiki) game built using modern R
 
 ### Technologies
 
-- React, with Hooks
+- React, with Hooks (Create React App)
 - Redux
 - Styled Components for CSS
 - Redux Persist for remembering game state
