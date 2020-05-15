@@ -22,6 +22,7 @@ const ToggleNotesButton = () => {
   return (
     <Container gameCompleted={gameCompleted} onClick={dispatchToggleNotesMode}>
       {notesAction} Notes
+      <p className="keyboard-shortcut">(Shift ⇧)</p>
     </Container>
   );
 };

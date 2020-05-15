@@ -10,7 +10,8 @@ import {
   deselectBlock,
   editBlockNotes,
   selectBlock,
-  setBlockValue
+  setBlockValue,
+  toggleNotesMode
 } from 'reducers';
 
 const AppContainer = () => {
@@ -70,6 +71,8 @@ const AppContainer = () => {
   }
   useMousetrap('backspace', handleDeletePress);
   useMousetrap('del', handleDeletePress);
+
+  useMousetrap('shift', () => dispatch(toggleNotesMode()));
 
   const gameCompleted = useSelector(({ gameCompleted }) => gameCompleted);
   const title = gameCompleted ? 'Correct!' : 'Futoshiki';

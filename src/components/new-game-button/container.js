@@ -8,7 +8,7 @@ const Container = styled.button`
     color: ${colors.lightBlack};
     cursor: pointer;
     font-size: 25px;
-    padding: 4px 20px;
+    padding: 5px 20px 6px;
 
     /* 
       Centre the button

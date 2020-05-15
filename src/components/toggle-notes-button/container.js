@@ -22,6 +22,11 @@ const Container = styled.button`
     &:hover {
       background-color: ${colors.lightBlue};
     }
+
+    .keyboard-shortcut {
+      margin: 0;
+      font-size: 11px;
+    }
   `}
 `;
 
