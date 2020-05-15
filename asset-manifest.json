@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/futoshiki/static/js/main.b617fc42.chunk.js",
-    "main.js.map": "/futoshiki/static/js/main.b617fc42.chunk.js.map",
+    "main.js": "/futoshiki/static/js/main.c8ed1a0c.chunk.js",
+    "main.js.map": "/futoshiki/static/js/main.c8ed1a0c.chunk.js.map",
     "runtime-main.js": "/futoshiki/static/js/runtime-main.1a0ab4e7.js",
     "runtime-main.js.map": "/futoshiki/static/js/runtime-main.1a0ab4e7.js.map",
     "static/js/2.5b1837dc.chunk.js": "/futoshiki/static/js/2.5b1837dc.chunk.js",
     "static/js/2.5b1837dc.chunk.js.map": "/futoshiki/static/js/2.5b1837dc.chunk.js.map",
     "index.html": "/futoshiki/index.html",
-    "precache-manifest.7650c5a19c0d2b5405a30d259cafdd41.js": "/futoshiki/precache-manifest.7650c5a19c0d2b5405a30d259cafdd41.js",
+    "precache-manifest.7151f51a90ee1ec7337c1720402d9ee3.js": "/futoshiki/precache-manifest.7151f51a90ee1ec7337c1720402d9ee3.js",
     "service-worker.js": "/futoshiki/service-worker.js",
     "static/js/2.5b1837dc.chunk.js.LICENSE.txt": "/futoshiki/static/js/2.5b1837dc.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.1a0ab4e7.js",
     "static/js/2.5b1837dc.chunk.js",
-    "static/js/main.b617fc42.chunk.js"
+    "static/js/main.c8ed1a0c.chunk.js"
   ]
 }
