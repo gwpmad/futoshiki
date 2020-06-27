@@ -4,6 +4,7 @@ A [Futoshiki](https://en.wikipedia.org/wiki/Futoshiki) game built using modern R
 
 Play it [here](https://gwpmad.github.io/futoshiki/).
 
+![Game gif](https://user-images.githubusercontent.com/14062617/85919086-3132b780-b860-11ea-80c5-bab9294df3cf.gif)
 ### Features
 
 - Puzzles are guaranteed to have only one solution
