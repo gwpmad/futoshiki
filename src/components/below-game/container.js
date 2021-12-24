@@ -7,6 +7,7 @@ const Container = styled.div`
   margin-top: 4px;
   position: relative;
   flex-shrink: 2;
+  max-height: 45px;
 `;
 
 export default Container;

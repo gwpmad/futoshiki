@@ -1,6 +1,8 @@
 export default {
   colors: {
+    brownishGrey: '#efe7d1',
     darkTurquoise: '#8ac2e5',
+    darkBrown: '#483e3e',
     faintLimeGreen: '#0ddb588c',
     grey: '#4b6b7e',
     lightBlack: '#323232',

@@ -6,7 +6,7 @@ import { NumberButton } from 'components';
 const NumberControls = () => {
   return (
     <Container className="number-controls">
-      {[...Array(5)].map((_, idx) => <NumberButton number={idx + 1}/>)}
+      {['a', 'b', 'c', 'd', 'e'].map((key, idx) => <NumberButton number={idx + 1} key={key}/>)}
     </Container>
   );
 };

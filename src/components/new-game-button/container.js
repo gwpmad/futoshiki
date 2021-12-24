@@ -9,7 +9,7 @@ const Container = styled.button`
     cursor: pointer;
     font-size: 25px;
     padding: 5px 20px 6px;
-    font-size: 4vw; // allow box to shrink with screen size, otherwise font size prevents it
+    overflow: hidden;
 
     &:hover {
       background-color: ${colors.lightBlue};
