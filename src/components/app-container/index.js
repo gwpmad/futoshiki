@@ -56,15 +56,18 @@ const AppContainer = () => {
     return !value && !enteredValue;
   });
 
-  function handleNumberPress(number) {
+  const handleNumberInput = useCallback(number => {
+    console.log('number', number)
+    console.log('canEditBlockNotes', canEditBlockNotes)
+    console.log('canSetBlockValue', canSetBlockValue)
     if (canSetBlockValue) return dispatch(setBlockValue(number));
     if (canEditBlockNotes) return dispatch(editBlockNotes(number));
-  }
-  useMousetrap('1', () => handleNumberPress(1));
-  useMousetrap('2', () => handleNumberPress(2));
-  useMousetrap('3', () => handleNumberPress(3));
-  useMousetrap('4', () => handleNumberPress(4));
-  useMousetrap('5', () => handleNumberPress(5));
+  }, [canSetBlockValue, canEditBlockNotes, dispatch]);
+  useMousetrap('1', () => handleNumberInput(1));
+  useMousetrap('2', () => handleNumberInput(2));
+  useMousetrap('3', () => handleNumberInput(3));
+  useMousetrap('4', () => handleNumberInput(4));
+  useMousetrap('5', () => handleNumberInput(5));
 
   function handleDeletePress() {
     if (canSetBlockValue) dispatch(setBlockValue(null));
@@ -87,7 +90,7 @@ const AppContainer = () => {
         <Title className="title">{title}</Title>
         <Grid />
         <BelowGame />
-        <NumberControls />
+        <NumberControls handleNumberInput={handleNumberInput} />
       </Content>
     </Container>
   );

@@ -15,9 +15,9 @@ const Container = styled.div`
       justify-content: center;
       margin: 20px;
       position: relative;
-      transition: color 0.3s linear, visibility 0.3s linear;
+      transition: color 0.3s linear, opacity 0.3s linear;
       user-select: none;
-      visibility: ${gameCompleted ? 'hidden' : 'initial'};
+      opacity: ${gameCompleted ? 0 : 1};
 
       &:before {
         padding-top: 100%; /* gives the box height - percentages are based on the WIDTH of the containing box so box width and height will scale together */
