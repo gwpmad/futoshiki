@@ -4,5 +4,7 @@ export { default as BelowGame } from './below-game';
 export { default as Block } from './block';
 export { default as Grid } from './grid';
 export { default as NewGameButton } from './new-game-button';
+export { default as NumberButton } from './number-button';
+export { default as NumberControls } from './number-controls';
 export { default as Row } from './row';
 export { default as ToggleNotesButton } from './toggle-notes-button';

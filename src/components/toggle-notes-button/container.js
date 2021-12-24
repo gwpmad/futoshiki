@@ -7,13 +7,12 @@ const Container = styled.button`
     border-radius: 4px;
     color: ${colors.lightBlack};
     cursor: pointer;
-    font-size: 14px;
-    margin-left: auto;
-    margin-right: 15px;
+    font-size: 2.5vw; // allow box to shrink with screen size, otherwise font size prevents it
     padding: 5px;
     transition: opacity 0.3s linear;
     opacity: ${gameCompleted ? 0 : 1};
     width: 96px;
+    margin-right: 15px;
 
     &:focus {
       outline: none;

@@ -6,6 +6,7 @@ import { NewGameButton, ToggleNotesButton } from 'components';
 const BelowGame = () => {
   return (
     <Container className="below-game">
+      <div className="invisible-left" style={{ width: '96px', 'margin-left': '15px' }} />
       <NewGameButton />
       <ToggleNotesButton />
     </Container>

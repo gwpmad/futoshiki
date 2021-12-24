@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import useMousetrap from 'react-hook-mousetrap';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Content, Grid, BelowGame, Title } from 'components';
+import { Content, Grid, BelowGame, Title, NumberControls } from 'components';
 import Container from './container';
 import { getValueAtCoordinates, traverseGrid } from 'game-logic';
 import {
@@ -87,6 +87,7 @@ const AppContainer = () => {
         <Title className="title">{title}</Title>
         <Grid />
         <BelowGame />
+        <NumberControls />
       </Content>
     </Container>
   );

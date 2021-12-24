@@ -20,7 +20,7 @@ const ToggleNotesButton = () => {
   const gameCompleted = useSelector(({ gameCompleted }) => gameCompleted);
 
   return (
-    <Container gameCompleted={gameCompleted} onClick={dispatchToggleNotesMode}>
+    <Container gameCompleted={gameCompleted} onClick={dispatchToggleNotesMode} className="toggle-notes-button">
       {notesAction} Notes
       <p className="keyboard-shortcut">(Shift ⇧)</p>
     </Container>
