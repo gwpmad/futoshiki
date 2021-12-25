@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import useMousetrap from 'react-hook-mousetrap';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Content, Grid, BelowGame, Title, NumberControls } from 'components';
+import { Content, Grid, BelowGame, Title, InputControls } from 'components';
 import Container from './container';
 import { getValueAtCoordinates, traverseGrid } from 'game-logic';
 import {
@@ -57,9 +57,6 @@ const AppContainer = () => {
   });
 
   const handleNumberInput = useCallback(number => {
-    console.log('number', number)
-    console.log('canEditBlockNotes', canEditBlockNotes)
-    console.log('canSetBlockValue', canSetBlockValue)
     if (canSetBlockValue) return dispatch(setBlockValue(number));
     if (canEditBlockNotes) return dispatch(editBlockNotes(number));
   }, [canSetBlockValue, canEditBlockNotes, dispatch]);
@@ -69,9 +66,10 @@ const AppContainer = () => {
   useMousetrap('4', () => handleNumberInput(4));
   useMousetrap('5', () => handleNumberInput(5));
 
-  function handleDeletePress() {
+  const handleDeletePress = useCallback(() => {
     if (canSetBlockValue) dispatch(setBlockValue(null));
-  }
+  }, [canSetBlockValue, dispatch]);;
+
   useMousetrap('backspace', handleDeletePress);
   useMousetrap('del', handleDeletePress);
 
@@ -90,7 +88,7 @@ const AppContainer = () => {
         <Title className="title">{title}</Title>
         <Grid />
         <BelowGame />
-        <NumberControls handleNumberInput={handleNumberInput} />
+        <InputControls handleNumberInput={handleNumberInput} handleDeletePress={handleDeletePress} />
       </Content>
     </Container>
   );

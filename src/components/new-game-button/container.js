@@ -11,8 +11,13 @@ const Container = styled.button`
     padding: 5px 20px 6px;
     overflow: hidden;
 
-    &:hover {
+    &:active {
       background-color: ${colors.lightBlue};
+    }
+    @media (min-width: 400px) {
+      &:hover {
+        background-color: ${colors.lightBlue};
+      }
     }
 
     &:focus {

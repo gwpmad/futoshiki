@@ -3,19 +3,19 @@ import { useSelector } from 'react-redux';
 
 import Container from './container';
 
-const NumberButton = ({ number, handleNumberInput }) => {
+const InputButton = ({ inputValue, clickHandler }) => {
   const gameCompleted = useSelector(({ gameCompleted }) => gameCompleted);
   return (
     <Container
       gameCompleted={gameCompleted}
       onClick={(e) => {
         e.stopPropagation();
-        handleNumberInput(number)
+        clickHandler(inputValue)
       }}
     >
-      {number}
+      {inputValue}
     </Container>
   );
 };
 
-export default NumberButton;
+export default InputButton;

@@ -18,8 +18,13 @@ const Container = styled.button`
       outline: none;
     }
 
-    &:hover {
+    &:active {
       background-color: ${colors.lightBlue};
+    }
+    @media (min-width: 400px) {
+      &:hover {
+        background-color: ${colors.lightBlue};
+      }
     }
 
     .keyboard-shortcut {

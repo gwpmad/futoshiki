@@ -48,6 +48,7 @@ const Block = ({ rowIndex, colIndex }) => {
     dispatch(checkSolution());
   }, [containsValueClue, blockValue, gameCompleted, showNotes, dispatch]);
 
+
   return (
     <Container
       containsValueClue={containsValueClue}

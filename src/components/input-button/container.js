@@ -13,7 +13,6 @@ const Container = styled.div`
       flex-shrink: 0; /* allows shrink down to main size (flex-basis) if the row/grid is thinner than all blocks put together */
       font-size: 40px;
       justify-content: center;
-      margin: 20px;
       position: relative;
       transition: color 0.3s linear, opacity 0.3s linear;
       user-select: none;
@@ -25,8 +24,13 @@ const Container = styled.div`
         float: left;
       }
 
-      &:hover {
+      &:active {
         background-color: ${colors.lightBlue};
+      }
+      @media (min-width: 400px) {
+        &:hover {
+          background-color: ${colors.lightBlue};
+        }
       }
     `;
   }}
