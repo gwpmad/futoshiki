@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "70ff400eb50294932a4ee484546353df",
+    "revision": "b19c7d2e15088132bf478b2005a2bfad",
     "url": "/futoshiki/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/futoshiki/static/js/2.f8d729cd.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "044f28c8297e42e9a61a",
-    "url": "/futoshiki/static/js/main.3ea04259.chunk.js"
+    "revision": "07a8ad090b6f344ad440",
+    "url": "/futoshiki/static/js/main.5e266acd.chunk.js"
   },
   {
     "revision": "419f7761cf3be6ec334d",
